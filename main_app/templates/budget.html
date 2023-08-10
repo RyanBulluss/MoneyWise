@@ -176,59 +176,60 @@
 <script>
     const ctx = document.getElementById('myChart')
 
-    
-    new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Budget', 'Budget Remaining', 'Total Spent'],
-        datasets: [{
-            label: '{{ month }} Budget Details',
-            // Don't worry about the red lines, it works fine but VScode 
-            // gets confused when you put python variables in JS
-            data: [{{ budget.amount }}, {{ budget_remaining }}, {{ monthly_expenses_sum }}],
-            backgroundColor: [
-                '#60e7ff',   // Budget
-                '#03EF62',   // Budget Remaining
-                '#ff931e',   // Total Spent
-            ],
-            borderColor: 'rgba(0, 0, 0, 1)',
-            borderWidth: 0,
-        }]
-    },
-    options: {
-        maintainAspectRatio: true,
-        aspectRatio: 500 / 600,
-        scales: {
-            y: {
-                grid: {
-                color: 'rgba(0, 0, 0, 0.1)',
-                lineWidth: 0, // For grid lines
+    setTimeout(function() {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Budget', 'Budget Remaining', 'Total Spent'],
+                datasets: [{
+                    label: '{{ month }} Budget Details',
+                    // Don't worry about the red lines, it works fine but VScode 
+                    // gets confused when you put python variables in JS
+                    data: [{{ budget.amount }}, {{ budget_remaining }}, {{ monthly_expenses_sum }}],
+                    backgroundColor: [
+                        '#60e7ff',   // Budget
+                        '#03EF62',   // Budget Remaining
+                        '#ff931e',   // Total Spent
+                    ],
+                    borderColor: 'rgba(0, 0, 0, 1)',
+                    borderWidth: 0,
+                }]
             },
-                beginAtZero: true,
-                stacked: true
-            },
-            x: {
-                grid: {
-                color: 'rgba(0, 0, 0, 0.1)',
-                lineWidth: 0, // For grid lines
-            },
-                stacked: true
+            options: {
+                maintainAspectRatio: true,
+                aspectRatio: 500 / 600,
+                scales: {
+                    y: {
+                        grid: {
+                        color: 'rgba(0, 0, 0, 0.1)',
+                        lineWidth: 0, // For grid lines
+                    },
+                        beginAtZero: true,
+                        stacked: true
+                    },
+                    x: {
+                        grid: {
+                        color: 'rgba(0, 0, 0, 0.1)',
+                        lineWidth: 0, // For grid lines
+                    },
+                        stacked: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                        position: 'top'
+                    }
+                },
+                elements: {
+                    line: {
+                        borderColor: 'rgba(0, 0, 0, 1)', // Example line color
+                        borderWidth: 19 // Example line width
+                    }
+                }
             }
-        },
-        plugins: {
-            legend: {
-                display: false,
-                position: 'top'
-            }
-        },
-        elements: {
-        line: {
-            borderColor: 'rgba(0, 0, 0, 1)', // Example line color
-            borderWidth: 19 // Example line width
-        }
-    }
-    }
-});
+        });
+    }, 100);
 </script>
 {% endif %}
 
