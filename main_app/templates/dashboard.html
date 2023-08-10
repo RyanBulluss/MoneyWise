@@ -57,22 +57,31 @@
         </div>
     </a>
     {% endif %}
-    <a href="{% url 'expenses' %}" class="dash-card-link">
+    <a href="{% url 'stocks' %}" class="dash-card-link">
         <div class="dash-card">
-            <h3>Stock Market</h3>
-            <i class="uil uil-chart-line"></i>
+            <div>
+                <h3>Stock</h3>
+                <h3>Market</h3>
+            </div>
+            <i class="uil uil-chart-line" style="background-color: #0077c4;"></i>
         </div>
     </a>
-    <a href="{% url 'expenses' %}" class="dash-card-link">
+    <a href="{% url 'investment' %}" class="dash-card-link">
         <div class="dash-card">
-            <h3>Investment Calculator</h3>
-            <i class="uil uil uil-chart-line-compound"></i>
+            <div>
+                <h3>Investment</h3>
+                <h3>Calculator</h3>
+            </div>
+            <i class="uil uil-chart"></i>
         </div>
     </a>
-    <a href="{% url 'expenses' %}" class="dash-card-link">
+    <a href="{% url 'taxes' %}" class="dash-card-link">
         <div class="dash-card">
-            <h3>UK Tax Calculator</h3>
-            <i class="uil uil-upload-alt"></i>
+            <div>
+                <h3>UK Tax</h3>
+                <h3>Calculator</h3>
+            </div>
+            <i class="uil uil-calculator-alt"></i>
         </div>
     </a>
 </div>
