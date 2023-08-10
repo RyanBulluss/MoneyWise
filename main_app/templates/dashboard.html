@@ -18,7 +18,7 @@
             <div class="dash-card-left">
                 <h4>Monthly Budget</h4>
                 {% if budget %}
-                    <h4>£{{ budget.amount }}</h4>
+                    <h4>£{{ budget.amount|floatformat:2 }}</h4>
                 {% else %}
                     <h4>No Budget</h4>
                 {% endif %}
@@ -30,7 +30,7 @@
         <div class="dash-card">
             <div class="dash-card-left">
                 <h4>Incomes</h4>
-                <h4>£{{ total_incomes }}</h4>
+                <h4>£{{ total_incomes|floatformat:2 }}</h4>
             </div>
             <i class="uil uil-download-alt"></i>
         </div>
@@ -39,8 +39,39 @@
         <div class="dash-card">
             <div class="dash-card-left">
                 <h4>Expenses</h4>
-                <h4>£{{ total_expenses }}</h4>
+                <h4>£{{ total_expenses|floatformat:2 }}</h4>
             </div>
+            <i class="uil uil-upload-alt"></i>
+        </div>
+    </a>
+    {% if main_account %}
+    <a href="{% url 'account_detail' main_account.id %}" class="dash-card-link">
+        <div class="dash-card">
+            <div class="dash-card-left">
+                <h4>Main Account</h4>
+                <h4>£{{ main_account.balance|floatformat:2  }} </h4>
+            </div>
+            <div class="bank-logo pb-3">
+                <img src="static/images/{{ main_account.name }}-Logo.png" alt="logo">
+            </div>
+        </div>
+    </a>
+    {% endif %}
+    <a href="{% url 'expenses' %}" class="dash-card-link">
+        <div class="dash-card">
+            <h3>Stock Market</h3>
+            <i class="uil uil-chart-line"></i>
+        </div>
+    </a>
+    <a href="{% url 'expenses' %}" class="dash-card-link">
+        <div class="dash-card">
+            <h3>Investment Calculator</h3>
+            <i class="uil uil uil-chart-line-compound"></i>
+        </div>
+    </a>
+    <a href="{% url 'expenses' %}" class="dash-card-link">
+        <div class="dash-card">
+            <h3>UK Tax Calculator</h3>
             <i class="uil uil-upload-alt"></i>
         </div>
     </a>
