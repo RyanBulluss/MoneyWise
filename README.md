@@ -41,7 +41,7 @@ Our journey began with meticulous planning – from designing the [ERD](https://
 
 ## Visite Our APP:
 
-<a href="https://moneywise-fin-app-cfc615d6c6e8.herokuapp.com/calculators/">Link to MoneyWise</a>
+<a href="https://moneywise-fin-app-cfc615d6c6e8.herokuapp.com/accounts/login/">Link to MoneyWise</a>
 
 Our project has crossed the finish line! As a team, we've checked off all the boxes: MVP is in place, along with mobile responsiveness, dark mode, authentication, dynamic graphs, and seamless CRUD operations. Our collaboration has been a driving force behind our success!
 
