@@ -18,12 +18,13 @@ import requests
 @login_required
 def dashboard(request):
 
-
   accounts = Account.objects.filter(user=request.user)
   balance = 0
   for account in accounts: 
     balance += int(account.balance)
   budget = Budget.objects.filter(user=request.user).first()
+
+  main_account = accounts.filter(user=request.user).order_by('-balance').first()
 
   filtered_incomes = Income.objects.filter(account__in=accounts)
   incomes = [income.amount for income in filtered_incomes]
@@ -34,9 +35,9 @@ def dashboard(request):
   total_expenses = sum(expenses)
 
   return render(request, 'dashboard.html', {
-    'accounts': accounts, 'balance': balance,
+    'balance': balance,
     'budget': budget, 'total_incomes': total_incomes,
-    'total_expenses': total_expenses
+    'total_expenses': total_expenses, 'main_account': main_account
   })
 
 
