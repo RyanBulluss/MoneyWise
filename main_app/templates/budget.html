@@ -16,84 +16,100 @@
 	color: var(--text-color);
 }
 
+.dash-card {
+    height: 140px;
+    width: 500px;
+    padding-top: 45px;
+}
+
+.card-body {
+    width: 100%;
+}
+
+.month-chart {
+    width: 900px;;
+}
+
+
+@media (max-width: 1200px) {
+    .dash-card {
+        height: 140px;
+        width: 350px;
+        padding-top: 45px;
+    }
+
+    .month-chart {
+        width: 750px;
+    }
+
+  }
+
+  /* Styles for screens under 600px */
+  @media (max-width: 600px) {
+    .dash-card {
+        height: 100px;
+        width: 280px;
+        padding-top: 30px;
+        align-items: top;
+    }
+
+    h4 {
+        font-size: 12px;
+    }
+
+    .card-body {
+        width: 100%;
+    }
+
+    .month-chart {
+        width: 350px;
+    }
+
+
+  }
 </style>
 
+
 <br>
-<h1 class="text-center">Budget for {{ month }}</h1>
+<h1 class="text-center mb-5">Budget for {{ month }}</h1>
 
-<div class="container mt-4 flex-column d-flex justify-content-center align-items-around" style="z-index: 1;">
+
 {% if budget %}
-    <div class="d-flex justify-content-center align-items-top flex-grow">
-        <div class="mr-5 d-flex flex-column justify-content-center align-items-top flex-grow-1 flex-grow">
-            <div class="card mb-3 flex-grow-1">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div class="d-flex flex-column justify-content-between align-items-left">
-                        <h4>Budget for {{ month }}</h4>
-                        <div class="d-flex justify-content-start align-items-center">
-                            <h6>£{{ budget.amount }}&nbsp;&nbsp;&nbsp;
-                            <a href="{% url 'budget_update' budget.id %}"><i style="padding: 0; font-size: 20px; color: gray" class="uil uil-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                            <a href="{% url 'budget_delete' budget.id %}"><i style="padding: 0; font-size: 20px; color: gray" class="uil uil-trash-alt"></i></a>
-                            </h6>
-                        </div>
-                    </div>
-                    <i class="uil uil-money-stack"></i> <!-- Add your icon here -->
-                </div>
-            </div>
-            <div class="card mb-3 flex-grow-1">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div class="d-flex flex-column justify-content-between align-items-left">
-                        <h4>Budget remaining</h4>
-                        <h6>£{{ budget_remaining }}</h6>
-                    </div>
-                    <i class="uil uil-balance-scale"></i> <!-- Add your icon here -->
-                </div>
-            </div>
-            <div class="card mb-3 flex-grow-1">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <div class="d-flex flex-column justify-content-between align-items-left">
-                        <h4>Total Spent for {{ month }}</h4>
-                        <h6>£{{ monthly_expenses_sum }}</h6>
-                    </div>
-                    <i class="uil uil-upload-alt"></i> <!-- Add your icon here -->
-                </div>
-            </div>
-        </div>
+
+<div class="container d-flex flex-column align-items-center">
+    <div class="row container d-flex justify-content-center align-items-center">
         <div>
-            <div id="chart-section" style="height: 500px; width: 400px;">
-                <canvas id="myChart"></canvas>
+            <div class="dash-card mt-0">
+                <div class="dash-card-left">
+                    <h4 class="m-0 p-0">Budget for {{ month }}</h4>
+                    <h6>£{{ budget.amount }}&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'budget_update' budget.id %}"><i style="padding: 0; font-size: 20px; color: gray" class="uil uil-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'budget_delete' budget.id %}"><i style="padding: 0; font-size: 20px; color: gray" class="uil uil-trash-alt"></i></a>
+                    </h6>
+                </div>
+                <i class="uil uil-money-stack"></i> <!-- Add your icon here -->
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-left">
+                    <h4>Budget remaining</h4>
+                    <h6>£{{ budget_remaining }}</h6>
+                </div>
+                <i class="uil uil-balance-scale"></i> <!-- Add your icon here -->
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-left">
+                    <h4>Total Spent for {{ month }}</h4>
+                    <h6>£{{ monthly_expenses_sum }}</h6>
+                </div>
+                <i class="uil uil-upload-alt"></i> <!-- Add your icon here -->
             </div>
         </div>
-    </div>
-{% else %}
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-body">
-            <div class="text-center">
-                <h3>You have no budget...</h3><br>
-                <a href="{% url 'budget_create' %}" class="text-center" id="new-btn" style="background-color: #60e7ff; color: black;"> + Create Budget</a>
-            </div>
+        <div id="chart-section" style="height: 500px; width: 400px;">
+            <canvas id="myChart"></canvas>
         </div>
     </div>
-</div>
-{% endif %}
-</div>
-    
-    
-    
-    
-    
 
-    
-    
-    
-{% if budget %}
-    
-
-    
-    <!-- Delete this table if you want, it's just to pad out the page -->
-    <br>
-<div class="container mt-4">
-    <div class="card">
+    <div class="card month-chart">
         <div class="card-body">
             <h4 class="text-center">Expenses for {{ month }}</h4>
             <br>
@@ -117,7 +133,44 @@
             </table>
         </div>
     </div>
+
 </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+{% else %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="text-center">
+                <h3>You have no budget...</h3><br>
+                <a href="{% url 'budget_create' %}" class="text-center" id="new-btn" style="background-color: #60e7ff; color: black;"> + Create Budget</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+    
+    
+    
+    
+    
+
+    
+    
+    
+{% if budget %}
 
 
 <script>
