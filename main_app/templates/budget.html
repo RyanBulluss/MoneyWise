@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+    #new-btn {
+	background-color: var(--panel-color);
+	padding: 10px 20px;
+	border-radius: 20px;
+	color: var(--text-color);
+	text-decoration: none;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
 
+#new-btn:hover {
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+</style>
 
 <br>
 <h1 class="text-center">Budget for {{ month }}</h1>
@@ -49,8 +65,16 @@
         </div>
     </div>
 {% else %}
-    <h3>You have no budget...</h3><br>
-    <a href="{% url 'budget_create' %}" class="text-center">Create Budget</a>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="text-center">
+                <h3>You have no budget...</h3><br>
+                <a href="{% url 'budget_create' %}" class="text-center" id="new-btn" style="background-color: #60e7ff; color: black;"> + Create Budget</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endif %}
 </div>
     
